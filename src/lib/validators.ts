@@ -75,6 +75,12 @@ export const bookingFormSchema = z.object({
     message: 'Return date must be on or after pickup date',
     path: ['return_date'],
   }
+).refine(
+  (data) => !data.pickup_date || data.pickup_date >= new Date().toISOString().split('T')[0],
+  {
+    message: 'Pickup date must be today or later',
+    path: ['pickup_date'],
+  }
 );
 
 export type BookingFormValues = z.infer<typeof bookingFormSchema>;

@@ -26,8 +26,13 @@ export function DeleteCarButton({ carId, carName }: DeleteCarButtonProps) {
           disabled={deleting}
           onClick={async () => {
             setDeleting(true);
-            const result = await deleteCar(carId);
-            if (result?.error) {
+            try {
+              const result = await deleteCar(carId);
+              if (result?.error) {
+                setDeleting(false);
+                setConfirm(false);
+              }
+            } catch {
               setDeleting(false);
               setConfirm(false);
             }

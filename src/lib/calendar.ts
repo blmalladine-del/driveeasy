@@ -32,25 +32,45 @@ interface RawCar {
   unavailability_reason: string | null;
 }
 
+async function safeQuery<T>(fn: () => Promise<{ data: T | null; error: any }>): Promise<T | null> {
+  try {
+    const { data, error } = await fn();
+    if (error) {
+      console.warn('[Calendar] Query error:', error);
+      return null;
+    }
+    return data;
+  } catch (err) {
+    console.warn('[Calendar] Query threw:', err);
+    return null;
+  }
+}
+
 export async function fetchCalendarEvents(): Promise<CalendarEvent[]> {
   const supabase = await createAuthClient();
 
-  const [bookingsResult, carsResult] = await Promise.all([
-    supabase
-      .from('booking_requests')
-      .select('id, car_name, full_name, pickup_date, return_date, status')
-      .order('pickup_date', { ascending: false }),
-    supabase
-      .from('cars')
-      .select('id, brand, model, unavailable_from, unavailable_until, unavailability_reason')
-      .not('unavailable_from', 'is', null)
-      .not('unavailable_until', 'is', null),
+  const [bookingsData, carsData] = await Promise.all([
+    safeQuery<RawBooking[]>(async () =>
+      await supabase
+        .from('booking_requests')
+        .select('id, car_name, full_name, pickup_date, return_date, status')
+        .order('pickup_date', { ascending: false })
+        .limit(500),
+    ),
+    safeQuery<RawCar[]>(async () =>
+      await supabase
+        .from('cars')
+        .select('id, brand, model, unavailable_from, unavailable_until, unavailability_reason')
+        .not('unavailable_from', 'is', null)
+        .not('unavailable_until', 'is', null)
+        .limit(500),
+    ),
   ]);
 
   const events: CalendarEvent[] = [];
 
-  if (bookingsResult.data) {
-    for (const b of bookingsResult.data as RawBooking[]) {
+  if (bookingsData) {
+    for (const b of bookingsData) {
       events.push({
         id: b.id,
         type: 'booking',
@@ -64,8 +84,8 @@ export async function fetchCalendarEvents(): Promise<CalendarEvent[]> {
     }
   }
 
-  if (carsResult.data) {
-    for (const c of carsResult.data as RawCar[]) {
+  if (carsData) {
+    for (const c of carsData) {
       events.push({
         id: `unavail-${c.id}`,
         type: 'unavailability',

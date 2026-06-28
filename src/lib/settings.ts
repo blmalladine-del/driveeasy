@@ -1,4 +1,4 @@
-import { getSupabaseClient } from './supabase/server';
+import { getSupabaseClient, queryWithTimeout } from './supabase/server';
 import { siteConfig } from '@/config/site';
 import type { SiteSettings, SiteSettingsRow } from '@/types/settings';
 
@@ -47,11 +47,10 @@ export function defaultSiteSettings(): SiteSettings {
 export async function getSiteSettings(): Promise<SiteSettings> {
   try {
     const supabase = getSupabaseClient();
-    const { data, error } = await supabase
-      .from('site_settings')
-      .select('*')
-      .limit(1)
-      .single();
+    const { data, error } = await queryWithTimeout(
+      supabase.from('site_settings').select('*').limit(1).single(),
+      'site_settings',
+    );
 
     if (error || !data) {
       return defaultSiteSettings();

@@ -2,6 +2,7 @@
 
 import { createAuthClient } from '@/lib/supabase/server';
 import { siteSettingsFormSchema } from '@/lib/validators';
+import { revalidatePath } from 'next/cache';
 
 export async function upsertSiteSettings(
   _prevState: { error?: string; success?: boolean } | null,
@@ -53,6 +54,9 @@ export async function upsertSiteSettings(
   if (error) {
     return { error: error.message };
   }
+
+  revalidatePath('/');
+  revalidatePath('/admin/settings');
 
   return { success: true };
 }

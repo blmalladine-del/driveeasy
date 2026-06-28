@@ -26,7 +26,8 @@ export default async function CarsPage({ searchParams }: CarsPageProps) {
     .from('cars')
     .select('*')
     .order('brand', { ascending: true })
-    .order('model', { ascending: true });
+    .order('model', { ascending: true })
+    .limit(100);
 
   return (
     <>
