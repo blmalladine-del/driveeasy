@@ -14,13 +14,14 @@ interface CalendarViewProps {
   cars: { id: string; name: string }[];
 }
 
-type FilterStatus = '' | 'new' | 'contacted' | 'confirmed' | 'rejected';
+type FilterStatus = '' | 'new' | 'contacted' | 'confirmed' | 'completed' | 'rejected';
 
 const statusOptions = [
   { value: '', label: 'All Statuses' },
   { value: 'new', label: 'New' },
   { value: 'contacted', label: 'Contacted' },
   { value: 'confirmed', label: 'Confirmed' },
+  { value: 'completed', label: 'Completed' },
   { value: 'rejected', label: 'Rejected' },
 ];
 
@@ -44,7 +45,8 @@ function getStatusColor(status: string): string {
     case 'new': return 'border-l-blue-500';
     case 'contacted': return 'border-l-amber-500';
     case 'confirmed': return 'border-l-green-500';
-    case 'rejected': return 'border-l-gray-400';
+    case 'completed': return 'border-l-purple-500';
+    case 'rejected': return 'border-l-red-500';
     default: return 'border-l-gray-400';
   }
 }
@@ -157,6 +159,9 @@ export function CalendarView({ events, cars }: CalendarViewProps) {
                                 event.status === 'confirmed' ? 'success' :
                                 event.status === 'contacted' ? 'warning' :
                                 event.status === 'new' ? 'default' : 'muted'
+                              } className={
+                                event.status === 'completed' ? '!bg-purple-100 !text-purple-700' :
+                                event.status === 'rejected' ? '!bg-red-100 !text-red-700' : ''
                               }>
                                 {event.status}
                               </Badge>
