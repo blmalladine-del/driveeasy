@@ -26,7 +26,7 @@ interface Booking {
   updated_at: string;
 }
 
-const STATUS_OPTIONS = ['new', 'contacted', 'confirmed', 'completed', 'rejected'] as const;
+const STATUS_OPTIONS = ['new', 'contacted', 'confirmed', 'rejected'] as const;
 
 export function AdminBookingDetail({ booking }: { booking: Booking }) {
   const router = useRouter();
