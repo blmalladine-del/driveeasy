@@ -32,12 +32,16 @@ export function AdminBookingDetail({ booking }: { booking: Booking }) {
   const router = useRouter();
   const [status, setStatus] = useState(booking.status);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function handleStatusChange(newStatus: string) {
     setIsUpdating(true);
+    setError(null);
     const result = await updateBookingStatus(booking.id, newStatus as any);
     if (result.success) {
       setStatus(newStatus);
+    } else {
+      setError(result.error || 'Failed to update status.');
     }
     setIsUpdating(false);
   }
@@ -77,6 +81,11 @@ export function AdminBookingDetail({ booking }: { booking: Booking }) {
       <div className="space-y-6">
         <Card padding="lg">
           <h2 className="font-bold mb-4">Update Status</h2>
+          {error && (
+            <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+              {error}
+            </div>
+          )}
           <div className="space-y-2">
             {STATUS_OPTIONS.map((option) => (
               <button

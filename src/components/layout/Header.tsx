@@ -12,9 +12,12 @@ import { cn } from '@/lib/utils';
 
 interface HeaderProps {
   phone?: string;
+  instagram_url?: string;
+  tiktok_url?: string;
+  facebook_url?: string;
 }
 
-export function Header({ phone = '+1 (555) 123-4567' }: HeaderProps) {
+export function Header({ phone = '+1 (555) 123-4567', instagram_url, tiktok_url, facebook_url }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
@@ -49,6 +52,31 @@ export function Header({ phone = '+1 (555) 123-4567' }: HeaderProps) {
             <Button href="/cars" size="md" className="!bg-amber-400 !text-amber-950 hover:!bg-amber-300 shadow-none">
               Browse Cars
             </Button>
+            <div className="ml-auto flex items-center gap-4">
+              {instagram_url && (
+                <a href={instagram_url} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-all hover:scale-110" aria-label="Instagram">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                  </svg>
+                </a>
+              )}
+              {tiktok_url && (
+                <a href={tiktok_url} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-all hover:scale-110" aria-label="TikTok">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                  </svg>
+                </a>
+              )}
+              {facebook_url && (
+                <a href={facebook_url} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-all hover:scale-110" aria-label="Facebook">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                  </svg>
+                </a>
+              )}
+            </div>
           </div>
 
           <button
@@ -80,6 +108,31 @@ export function Header({ phone = '+1 (555) 123-4567' }: HeaderProps) {
               ))}
             </nav>
             <div className="flex flex-col gap-3 pt-2 border-t border-white/[0.06]">
+              <div className="flex items-center gap-4">
+                {instagram_url && (
+                  <a href={instagram_url} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-all hover:scale-110" aria-label="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                    </svg>
+                  </a>
+                )}
+                {tiktok_url && (
+                  <a href={tiktok_url} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-all hover:scale-110" aria-label="TikTok">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                    </svg>
+                  </a>
+                )}
+                {facebook_url && (
+                  <a href={facebook_url} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-all hover:scale-110" aria-label="Facebook">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                    </svg>
+                  </a>
+                )}
+              </div>
               <a
                 href={`tel:${phone.replace(/\s/g, '')}`}
                 className="text-sm font-medium text-white/60 hover:text-white transition-colors"

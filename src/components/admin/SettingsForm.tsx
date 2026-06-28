@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState, useRef, useState } from 'react';
+import { useEffect, useActionState, useRef, useState } from 'react';
 import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/Label';
 import { Textarea } from '@/components/ui/Textarea';
@@ -16,6 +16,10 @@ interface SettingsFormProps {
 
 export function SettingsForm({ settings }: SettingsFormProps) {
   const [state, formAction, pending] = useActionState(upsertSiteSettings, null);
+  useEffect(() => {
+    if (state) window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [state]);
+
   const [heroPreview, setHeroPreview] = useState<string | null>(null);
   const [heroUploading, setHeroUploading] = useState(false);
   const [heroUrl, setHeroUrl] = useState(settings.hero_image_url);

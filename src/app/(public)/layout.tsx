@@ -12,7 +12,7 @@ export default async function PublicLayout({
 
   return (
     <>
-      <Header phone={settings.phone} />
+      <Header phone={settings.phone} instagram_url={settings.instagram_url} tiktok_url={settings.tiktok_url} facebook_url={settings.facebook_url} />
       <main className="flex-1 bg-black">{children}</main>
       <Footer settings={settings} />
       <WhatsAppButton variant="floating" whatsapp={settings.whatsapp} />
