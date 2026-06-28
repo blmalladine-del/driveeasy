@@ -1,4 +1,4 @@
-export type BookingStatus = 'new' | 'contacted' | 'confirmed' | 'rejected';
+export type BookingStatus = 'new' | 'contacted' | 'confirmed' | 'completed' | 'rejected';
 
 export interface BookingFormData {
   car_id: string;

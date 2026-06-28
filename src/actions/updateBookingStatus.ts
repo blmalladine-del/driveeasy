@@ -3,7 +3,7 @@
 import { createAuthClient } from '@/lib/supabase/server';
 import { revalidatePath } from 'next/cache';
 
-type BookingStatus = 'new' | 'contacted' | 'confirmed' | 'rejected';
+type BookingStatus = 'new' | 'contacted' | 'confirmed' | 'completed' | 'rejected';
 
 export async function updateBookingStatus(
   bookingId: string,
