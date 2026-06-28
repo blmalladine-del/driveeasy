@@ -10,7 +10,7 @@ interface MapSectionProps {
 
 export function MapSection({ settings }: MapSectionProps) {
   return (
-    <section className="relative overflow-hidden bg-[#0a0a0a] py-12 md:py-16">
+    <section id="location" className="relative overflow-hidden bg-[#0a0a0a] py-12 md:py-16">
       <div className="mx-auto max-w-7xl px-6 md:px-12">
         <div className="mb-6 flex items-center gap-3">
           <span className="block h-px w-5 bg-amber-400/50 shrink-0" />
