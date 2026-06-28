@@ -11,6 +11,7 @@ export interface SiteSettings extends SiteConfig {
   required_documents_note: string;
   instagram_url: string;
   facebook_url: string;
+  tiktok_url: string;
   hero_image_url: string;
 }
 
@@ -27,6 +28,7 @@ export interface SiteSettingsRow {
   email: string;
   instagram_url: string;
   facebook_url: string;
+  tiktok_url: string;
   hero_title: string;
   hero_subtitle: string;
   primary_cta_text: string;
@@ -50,6 +52,7 @@ export interface SiteSettingsFormData {
   email: string;
   instagram_url: string;
   facebook_url: string;
+  tiktok_url: string;
   hero_title: string;
   hero_subtitle: string;
   primary_cta_text: string;

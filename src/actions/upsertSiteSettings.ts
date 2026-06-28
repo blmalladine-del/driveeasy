@@ -12,7 +12,7 @@ export async function upsertSiteSettings(
   const fields = [
     'company_name', 'company_tagline', 'company_description', 'company_logo_url',
     'business_address', 'city', 'business_hours', 'phone', 'whatsapp_number',
-    'email', 'instagram_url', 'facebook_url', 'hero_title', 'hero_subtitle',
+    'email', 'instagram_url', 'facebook_url', 'tiktok_url', 'hero_title', 'hero_subtitle',
     'primary_cta_text', 'faq_contact_text', 'default_pickup_location',
     'security_deposit_note', 'required_documents_note', 'hero_image_url',
   ];

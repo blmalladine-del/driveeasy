@@ -23,6 +23,7 @@ function mapRowToSettings(row: SiteSettingsRow): SiteSettings {
     required_documents_note: row.required_documents_note || 'Valid driver\'s license, passport or national ID, and a credit card.',
     instagram_url: row.instagram_url || '',
     facebook_url: row.facebook_url || '',
+    tiktok_url: row.tiktok_url || '',
     hero_image_url: row.hero_image_url || '',
   };
 }
@@ -40,6 +41,7 @@ export function defaultSiteSettings(): SiteSettings {
     required_documents_note: 'Valid driver\'s license, passport or national ID, and a credit card.',
     instagram_url: '',
     facebook_url: '',
+    tiktok_url: '',
     hero_image_url: '',
   };
 }

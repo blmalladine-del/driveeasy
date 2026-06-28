@@ -104,6 +104,7 @@ export const siteSettingsFormSchema = z.object({
   email: z.string().email('Invalid email'),
   instagram_url: z.string(),
   facebook_url: z.string(),
+  tiktok_url: z.string(),
   hero_title: z.string().min(1, 'Hero title is required'),
   hero_subtitle: z.string().min(1, 'Hero subtitle is required'),
   primary_cta_text: z.string().min(1, 'CTA text is required'),

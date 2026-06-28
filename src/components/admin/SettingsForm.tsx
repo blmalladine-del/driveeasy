@@ -115,21 +115,28 @@ export function SettingsForm({ settings }: SettingsFormProps) {
             <Input id="whatsapp_number" name="whatsapp_number" defaultValue={settings.whatsapp} required />
           </div>
         </div>
+        <div className="space-y-2">
+          <Label htmlFor="email">Email</Label>
+          <Input id="email" name="email" type="email" defaultValue={settings.email} required />
+        </div>
+      </fieldset>
+
+      <fieldset className="space-y-4">
+        <legend className="text-lg font-semibold text-foreground">Social Media</legend>
+        <p className="text-sm text-muted">Links will appear as icons on the homepage hero section.</p>
         <div className="grid gap-4 sm:grid-cols-2">
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" name="email" type="email" defaultValue={settings.email} required />
-          </div>
           <div className="space-y-2">
             <Label htmlFor="instagram_url">Instagram URL</Label>
             <Input id="instagram_url" name="instagram_url" defaultValue={settings.instagram_url} placeholder="https://instagram.com/..." />
           </div>
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
-            <Label htmlFor="facebook_url">Facebook URL</Label>
-            <Input id="facebook_url" name="facebook_url" defaultValue={settings.facebook_url} placeholder="https://facebook.com/..." />
+            <Label htmlFor="tiktok_url">TikTok URL</Label>
+            <Input id="tiktok_url" name="tiktok_url" defaultValue={settings.tiktok_url} placeholder="https://tiktok.com/..." />
           </div>
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="facebook_url">Facebook URL</Label>
+          <Input id="facebook_url" name="facebook_url" defaultValue={settings.facebook_url} placeholder="https://facebook.com/..." />
         </div>
       </fieldset>
 
@@ -219,9 +226,22 @@ export function SettingsForm({ settings }: SettingsFormProps) {
 
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
-            <Label htmlFor="faq_contact_text">FAQ Contact Text</Label>
-            <Input id="faq_contact_text" name="faq_contact_text" defaultValue={settings.faq_contact_text} required />
+            <Label htmlFor="hero_title">Hero Title</Label>
+            <Input id="hero_title" name="hero_title" defaultValue={settings.hero_title} required />
           </div>
+          <div className="space-y-2">
+            <Label htmlFor="hero_subtitle">Hero Subtitle</Label>
+            <Input id="hero_subtitle" name="hero_subtitle" defaultValue={settings.hero_subtitle} required />
+          </div>
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="primary_cta_text">Primary CTA Text</Label>
+          <Input id="primary_cta_text" name="primary_cta_text" defaultValue={settings.primary_cta_text} required />
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="faq_contact_text">FAQ Contact Text</Label>
+          <Input id="faq_contact_text" name="faq_contact_text" defaultValue={settings.faq_contact_text} required />
         </div>
       </fieldset>
 
